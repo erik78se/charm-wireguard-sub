@@ -1,0 +1,21 @@
+# Copyright 2022 erik.lonroth@gmail.com
+# See LICENSE file for licensing details.
+
+name: wireguard-sub
+display-name: |
+  wireguard-sub
+description: |
+  A wireguard subordinate charm.
+summary: |
+  Deploys a wireguard instance 
+
+subordinate: true
+
+requires:
+  juju-info:
+    interface: juju-info
+    scope: container
+
+peers:
+  mesh:
+    interface: wireguard

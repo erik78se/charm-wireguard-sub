@@ -1,0 +1,17 @@
+# Copyright 2022 erik.lonroth@gmail.com
+# See LICENSE file for licensing details.
+
+options:
+  listenport:
+    default: 51820
+    description: | 
+        "(Optional) A 16-bit port for listening. If not specified, chosen randomly."
+    type: int
+  ip-forward:
+    default: false
+    description: (Not yet implemented) Toggle ip-forwarding (sysctl -w net.ipv4.ip_forward=1/0)
+    type: boolean
+  address:
+    default: "10.8.0.1/32"
+    description: ipv4 address for the wg0 tunnel address.
+    type: string
