@@ -230,8 +230,11 @@ class WireguardSubCharm(CharmBase):
         Prints out an example config for remote endpoint.
         See: https://pypi.org/project/wgconfig/
         """
-        # peer
         publickey = event.params.pop('publickey')
+        if 'peername' in event.params:
+            peername = event.params.pop('peername')
+        else:
+            peername = "N/A"
 
         if not self.validate_wireguard_public_key(publickey):
             event.set_results({"failed": "Public key not valid. Expect base64 encoded length 32"})
@@ -243,7 +246,7 @@ class WireguardSubCharm(CharmBase):
         
         # Adds all options given to us.
         try:
-            wc.add_peer(publickey, '# Added by Juju action')
+            wc.add_peer(publickey, leading_comment=f"# Peer name: {peername}")
             for k,v in event.params.items():
                 wc.add_attr(publickey, k, v)
             wc.write_file()

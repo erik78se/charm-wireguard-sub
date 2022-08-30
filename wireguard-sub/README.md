@@ -36,7 +36,7 @@ Create your clients config:
     ## Allowed remote traffic for this peer ##
     AllowedIPs = 10.8.0.0/24
     
-    ## Remote peer's public IPv4/IPv6 address and port ##
+    ## (Optionally) a remote peer's public IPv4/IPv6 address and port ##
     Endpoint = 10.51.45.175:51820
     
     ##  Key connection alive ##
@@ -48,14 +48,19 @@ With this config, replace the Peer's **Publickey** with that from
 
 Replace the **Endpoint** with the public address of the instance/unit.
 
-Then finally add your peer to the unit with 
+Then finally add your peers to the unit with 
 
     juju run-action wireguard-sub/0 add-peer publickey="YOURPUBLICKEY" endpoint="YOURENDPOINT:58570" allowedips="10.8.0.0/24" persistentkeepalive=15 --wait
+
+    or for a client-like configuration, leaving out the endpoint argument:
+
+    juju run-action wireguard-sub/0 add-peer publickey="YOURPUBLICKEY" allowedips="10.8.0.0/24" persistentkeepalive=15 --wait
+
 
 ## (Action) [add-peer](actions.yaml)
 Documentation on this action here: [actions.yaml](actions.yaml)
 
-    juju run-action wireguard-sub/0 add-peer publickey="LarqVX5tzZXZxFXRCnC/1TzNfncxtWSepA8ojntqVyw=" endpoint="10.51.45.42:58570" allowedips="10.8.0.0/24" persistentkeepalive=15 --wait
+    juju run-action wireguard-sub/0 add-peer publickey="LarqVX5tzZXZxFXRCnC/1TzNfncxtWSepA8ojntqVyw=" allowedips="10.8.0.0/24" persistentkeepalive=15 --wait
 
 ## (Action) [remove-peer](actions.yaml)
 Documentation on this action here: [actions.yaml](actions.yaml)

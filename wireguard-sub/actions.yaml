@@ -10,6 +10,10 @@ down:
 add-peer:
   description: Adds a peer and then restarts the wireguard service.
   params:
+    peername:
+      description: | 
+        "A common name added as a comment in the Peer configuration."
+      type: string
     publickey:
       description: "PublicKey of the peer"
       type: string
@@ -43,7 +47,7 @@ add-peer:
         This option adds an additional layer of symmetric-key cryptography to be mixed into the already existing public-key
          cryptography, for post-quantum resistance. Optional."
 
-  required: [ publickey, endpoint, allowedips ]
+  required: [ publickey, allowedips ]
 
 remove-peer:
   description: Removes a peer and then restarts the wireguard service.
